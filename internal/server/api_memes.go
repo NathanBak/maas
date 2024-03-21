@@ -7,9 +7,10 @@ import (
 	"strings"
 
 	"github.com/NathanBak/maas/pkg/meme"
+	"github.com/google/uuid"
 )
 
-func (s *Server) getMeme(w http.ResponseWriter, r *http.Request) {
+func (s *Server) getMeme(w http.ResponseWriter, r *http.Request, userId uuid.UUID) {
 	ctx := r.Context()
 
 	latVal := r.URL.Query().Get("lat")

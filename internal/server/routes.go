@@ -32,7 +32,14 @@ func (s *Server) routes() []Route {
 			Name:        "GetMeme",
 			Method:      http.MethodGet,
 			Pattern:     "/api/v1/memes",
-			HandlerFunc: s.getMeme,
+			HandlerFunc: s.countApiCall(s.getMeme),
+		},
+
+		{
+			Name:        "GetCount",
+			Method:      http.MethodGet,
+			Pattern:     "/api/v1/counts",
+			HandlerFunc: s.countApiCall(s.getCount),
 		},
 	}
 }

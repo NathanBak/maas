@@ -13,8 +13,9 @@ import (
 // Server.Shutdown() function.
 type Server struct {
 	http.Server
-	log Logger
-	cfg Config
+	log     Logger
+	cfg     Config
+	counter CallCounter
 }
 
 // New creates, configures, and returns a new server instance.
@@ -26,8 +27,9 @@ func New(cfg Config) (*Server, error) {
 			ReadTimeout:  cfg.ReadTimeout,
 			WriteTimeout: cfg.WriteTimeout,
 		},
-		cfg: cfg,
-		log: cfg.Logger,
+		cfg:     cfg,
+		log:     cfg.Logger,
+		counter: cfg.CallCounter,
 	}
 
 	router := mux.NewRouter().StrictSlash(true)

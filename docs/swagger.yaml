@@ -66,7 +66,8 @@ paths:
         schema:
           type: string
         description: search text
-
+      security: 
+      - userUuidHeader: []
       responses:
         "200":
           $ref: "#/components/responses/MemeResponse"
@@ -75,8 +76,31 @@ paths:
         "500":
           $ref: "#/components/responses/InternalErrorResponse"
 
+  /api/v1/counts:
+    get:
+      tags: [External]
+      summary: API call count
+      description: Returns a message containing the number of API calls
+      operationId: getCount
+      security: 
+      - userUuidHeader: []
+      responses:
+        "200":
+          $ref: "#/components/responses/MemeResponse"
+        "400":
+          $ref: "#/components/responses/NotFoundResponse"
+        "404":
+          $ref: "#/components/responses/BadRequestResponse"
+        "500":
+          $ref: "#/components/responses/InternalErrorResponse"
 
 components:
+
+  securitySchemes:
+    userUuidHeader:
+      type: http
+      scheme: bearer
+      bearerFormat: uuid    
 
   responses:
   
