@@ -29,7 +29,7 @@ func (s *Server) getMeme(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var lon float64
-	if latVal != "" {
+	if lonVal != "" {
 		parsed, err := strconv.ParseFloat(lonVal, 64)
 		if err != nil {
 			s.RespondWithError(r.Context(), w, r, http.StatusBadRequest,
