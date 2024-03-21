@@ -50,25 +50,33 @@ paths:
       summary: Primary maas endpoint
       description: Returns a meme
       operationId: getMeme
+      parameters:
+      - in: query
+        name: lat
+        schema:
+          type: number
+        description: Lattitude of the location
+      - in: query
+        name: lon
+        schema:
+          type: number
+        description: Longitude of the location
+      - in: query
+        name: query
+        schema:
+          type: string
+        description: search text
+
       responses:
         "200":
           $ref: "#/components/responses/MemeResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
         "500":
           $ref: "#/components/responses/InternalErrorResponse"
 
 
 components:
-
-  parameters:
-  
-    WidgetID:
-      in: path
-      name: widgetId
-      description: Id of the widget
-      required: true
-      schema:
-        type: string
-
 
   responses:
   
@@ -112,6 +120,8 @@ components:
     Meme:
       description: Meme information
       type: object
+      required:
+      - id
       properties:
         id:
           description: ID is a unique request identifier
